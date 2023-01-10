@@ -43,7 +43,9 @@ if (!$listaChamps) {
                     foreach ($lista as $insideLista) {
                         echo "<td>" . $insideLista . "</td>";
                     }
-                    echo "</tr>";
+                    echo "<td><button type='button' class='btn btn-primary'>MODIFICAR</button></td>
+                    <td><button type='button' class='btn btn-danger'>BORRAR</button></td>
+                    </tr>";
                 }
                 ?>
             </tbody>
