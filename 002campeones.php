@@ -5,7 +5,6 @@ $conexion = mysqli_connect("localhost", "root", "", "lol");
 if (mysqli_connect_errno()) {
     echo "Conexion con la BBDD fallida: " . mysqli_connect_error();
 }
-
 $consulta = "SELECT * FROM champ";
 $listaChamps = mysqli_query($conexion, $consulta);
 
@@ -22,6 +21,9 @@ if (!$listaChamps) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <script defer src="js/custom.js"></script>
+    <script defer src="js/bootstrap.js"></script>
     <title>Document</title>
 </head>
 
@@ -38,14 +40,18 @@ if (!$listaChamps) {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($listaChamps as $lista) {
+                <?php foreach ($listaChamps as $key => $lista) {
                     echo "<tr>";
                     foreach ($lista as $insideLista) {
                         echo "<td>" . $insideLista . "</td>";
                     }
-                    echo "<td><button type='button' class='btn btn-primary'>MODIFICAR</button></td>
+                    echo "<form method='POST' action='003editando.php'>
+                    <td> 
+                    <input type='hidden' name='id' value='$key'>               
+                    <button type='submit' class='btn btn-primary'>MODIFICAR</button></td> 
+                    </form>
                     <td><button type='button' class='btn btn-danger'>BORRAR</button></td>
-                    </tr>";
+                    </tr>  ";
                 }
                 ?>
             </tbody>
