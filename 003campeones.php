@@ -1,10 +1,21 @@
 <?php
 include_once "conexion.php";
 
-$consulta = "SELECT * FROM champ";
-$listaChamps = mysqli_query($conexion, $consulta);
 
-if (!$listaChamps) {
+if (isset( $_GET['key'])) {
+    $dato = $_GET['key'];
+    $orden = $_GET['orden'];
+    $consulta = "SELECT * FROM champ ORDER BY $dato $orden";
+}else {
+    $consulta = "SELECT * FROM champ";
+}
+
+
+
+
+$ordered = mysqli_query($conexion, $consulta);
+
+if (!$ordered) {
     echo "La consulta no se ha realizado con éxito: ";
 }
 ?>
@@ -37,16 +48,20 @@ if (!$listaChamps) {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($listaChamps as $key => $lista) {
+                <?php foreach ($ordered as $key => $lista) {
                     echo "<tr>";
-                    foreach ($lista as $insideLista) {
-                        echo "<td>" . $insideLista . "<i class='bi bi-arrow-up-short'></i>
-                        <i class='bi bi-arrow-down-short'></i>
+                    foreach ($lista as $key => $insideLista) {
+                        echo "<td>" . $insideLista . "<a href='003campeones.php?key=$key&&orden=ASC'><i class='bi bi-arrow-up-short'></i></a> 
+                        <a href='003campeones.php?key=$key&&orden=DESC'><i class='bi bi-arrow-down-short'></i></a> 
                         </td>";
                     }
                     echo "</tr>";
                 }
-               
+
+
                 ?>
             </tbody>
         </table>
+        
+    </body>
+</html>
