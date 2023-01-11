@@ -1,10 +1,7 @@
 <?php
 
-$conexion = mysqli_connect("localhost", "root", "", "lol");
+include_once "conexion.php";
 
-if (mysqli_connect_errno()) {
-    echo "Conexion con la BBDD fallida: " . mysqli_connect_error();
-}
 $consulta = "SELECT * FROM champ";
 $listaChamps = mysqli_query($conexion, $consulta);
 
@@ -28,7 +25,7 @@ if (!$listaChamps) {
 </head>
 
 <body>
-    <div class="table-responsive">
+    <div class="table-responsive container mt-5">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -45,13 +42,28 @@ if (!$listaChamps) {
                     foreach ($lista as $insideLista) {
                         echo "<td>" . $insideLista . "</td>";
                     }
-                    echo "<form method='POST' action='003editando.php'>
-                    <td> 
-                    <input type='hidden' name='id' value='$key'>               
-                    <button type='submit' class='btn btn-primary'>MODIFICAR</button></td> 
-                    </form>
-                    <td><button type='button' class='btn btn-danger'>BORRAR</button></td>
-                    </tr>  ";
+                    echo "<td><a href='003editando.php?id=$lista[id]' class='btn btn-primary'>MODIFICAR</a></td> 
+                    <td>
+                    <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#exampleModal$lista[id]'>
+                      BORRAR
+                    </button>
+                    <div class='modal fade' id='exampleModal$lista[id]' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                      <div class='modal-dialog modal-dialog-centered'>
+                        <div class='modal-content'>
+                          <div class='modal-header'>
+                            <h1 class='modal-title fs-5' id='exampleModalLabel'>¿Está seguro que quiere borrar a <strong>$lista[nombre]</strong>?</h1>
+                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                          </div>
+                          <div class='modal-footer'>
+                            <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>No borrar</button>
+                            
+                            <a href='borrando.php?id=$lista[id]' class='btn btn-danger'>BORRAR</a>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div></td>
+                    </tr>";
                 }
                 ?>
             </tbody>
