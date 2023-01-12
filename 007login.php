@@ -10,22 +10,21 @@ try {
 
     if (!isset($username) || !isset($password)) {
         echo "ERROR! Algun valor no ha sido bien introducido en el formulario";
-    }
-
-
-    $sql = "SELECT username, password FROM user WHERE username = :usernamer";
+    }else{
+    $sql = "SELECT * FROM `user` WHERE username = :username";
     $sentencia = $conexion->prepare($sql);
-    $sentencia->bindParam(":usernamer", $username);
+    $sentencia->bindParam(':username', $username);
 
-    $isOk = $sentencia->execute();
+    $sentencia->execute();
 
     $usuario = $sentencia->fetch();
 
-    if ($usuario && password_verify($usuario['password'], $password)) {
+    if (password_verify($password, $usuario['password']) && $usuario) {
         echo "TE HAS LOGEADO";
     }else{
         echo "Un mojón pa ti";
     }
+}
 } catch (PDOException $ms) {
     echo "Fallo en la conexión a la BBDD: " . $ms->getMessage();
 }

@@ -20,6 +20,9 @@ CREATE TABLE `user`(
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     `name` VARCHAR(64),
     username VARCHAR(64) UNIQUE,
-    `password` VARCHAR(32) UNIQUE,
+    `password` VARCHAR(256) UNIQUE,
     email VARCHAR(64)
 );
+
+
+
