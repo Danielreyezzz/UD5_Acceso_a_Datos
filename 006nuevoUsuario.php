@@ -1,12 +1,14 @@
 <?php
 
-$dsn = "mysql:host=localhost;dbname=lol";
+
 
 try {
     $name = $_POST['name'];
     $username = $_POST['username'];
     $password = $_POST['password'];
     $email = $_POST['email'];
+
+    $dsn = "mysql:host=localhost;dbname=lol";
 
     $conexion = new PDO($dsn, 'root', '');
     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -17,12 +19,18 @@ try {
 
 
     $sql = "INSERT INTO `user`(`name`, username, `password`, email)
-                  VALUES (:`name`, :username, :`password`, :email);";
+                  VALUES (:name, :username, :password, :email);";
     $sentencia = $conexion->prepare($sql);
-    $sentencia->bindParam(":`name`", $nombre);
-    $sentencia->bindParam(":username", $username);   
-    $sentencia->bindParam(":`password`", $password);   
-    $sentencia->bindParam(":email", $email);                 
+
+    $isOk = $sentencia->execute(
+        [
+            "name" => $name,
+            "username" => $username,
+            "password" => password_hash($password, PASSWORD_DEFAULT),
+            "email" => $email
+        ]
+    );
+    
 } catch (PDOException $ms) {
     echo "Fallo en la conexión a la BBDD: " . $ms->getMessage();
 }

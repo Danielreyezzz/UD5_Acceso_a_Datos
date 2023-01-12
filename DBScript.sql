@@ -14,3 +14,12 @@ INSERT INTO champ VALUES
 (3, "Laura Potter", "Mago", 4, "Lo mismo te hechiza que te programa una app"),
 (4, "Luis Porro", "Support",2, "Siempre dispuesto a ayudar a los demás. Su archienemigo son las escaleras"),
 (5, "Olga la Ponediez", "Support", 4, "Enseña a los demás. No la hagas cabrear");
+
+
+CREATE TABLE `user`(
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    `name` VARCHAR(64),
+    username VARCHAR(64) UNIQUE,
+    `password` VARCHAR(32) UNIQUE,
+    email VARCHAR(64)
+);
