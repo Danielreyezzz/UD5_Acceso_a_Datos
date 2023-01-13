@@ -1,12 +1,9 @@
 <?php
 try {
+    include_once "conexionPDO.php";
+
     $username = $_POST['username'];
     $password = $_POST['password'];
-
-    $dsn = "mysql:host=localhost;dbname=lol";
-
-    $conexion = new PDO($dsn, 'root', '');
-    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if (!isset($username) || !isset($password)) {
         echo "ERROR! Algun valor no ha sido bien introducido en el formulario";
@@ -19,10 +16,12 @@ try {
 
     $usuario = $sentencia->fetch();
 
-    if (password_verify($password, $usuario['password']) && $usuario) {
-        echo "TE HAS LOGEADO";
+    if (password_verify($password, $usuario['password'])) {
+        echo "<h1>Bienvenido $usuario[username]</h1>";
+        header('refresh:2;url=002campeones.php');
     }else{
-        echo "Un mojón pa ti";
+        echo "Usuario o contraseña INCORRECTA";
+        header('refresh:2;url=008loginView.php');
     }
 }
 } catch (PDOException $ms) {

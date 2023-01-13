@@ -1,10 +1,7 @@
 <?php
 try {
-
-    $dsn = "mysql:host=localhost;dbname=lol";
-
-    $conexion = new PDO($dsn, 'root', '');
-    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    include_once "conexionPDO.php";
 
     $pass1 = password_hash('1234', PASSWORD_DEFAULT);
     $pass2 = password_hash('5555', PASSWORD_DEFAULT);
