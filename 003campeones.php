@@ -40,20 +40,23 @@ if (!$ordered) {
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Rol</th>
-                    <th scope="col">Dificultad</th>
-                    <th scope="col">Descripción</th>
+                    <th scope="col">ID <a href='003campeones.php?key=id&&orden=ASC'><i class='bi bi-arrow-up-short'></i></a> 
+                        <a href='003campeones.php?key=id&&orden=DESC'><i class='bi bi-arrow-down-short'></i></a></th>
+                    <th scope="col">Nombre <a href='003campeones.php?key=nombre&&orden=ASC'><i class='bi bi-arrow-up-short'></i></a> 
+                        <a href='003campeones.php?key=nombre&&orden=DESC'><i class='bi bi-arrow-down-short'></i></a></th>
+                    <th scope="col">Rol <a href='003campeones.php?key=rol&&orden=ASC'><i class='bi bi-arrow-up-short'></i></a> 
+                        <a href='003campeones.php?key=rol&&orden=DESC'><i class='bi bi-arrow-down-short'></i></a></th>
+                    <th scope="col">Dificultad <a href='003campeones.php?key=dificultad&&orden=ASC'><i class='bi bi-arrow-up-short'></i></a> 
+                        <a href='003campeones.php?key=dificultad&&orden=DESC'><i class='bi bi-arrow-down-short'></i></a></th>
+                    <th scope="col">Descripción <a href='003campeones.php?key=descripcion&&orden=ASC'><i class='bi bi-arrow-up-short'></i></a> 
+                        <a href='003campeones.php?key=descripcion&&orden=DESC'><i class='bi bi-arrow-down-short'></i></a></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($ordered as $key => $lista) {
                     echo "<tr>";
                     foreach ($lista as $key => $insideLista) {
-                        echo "<td>" . $insideLista . "<a href='003campeones.php?key=$key&&orden=ASC'><i class='bi bi-arrow-up-short'></i></a> 
-                        <a href='003campeones.php?key=$key&&orden=DESC'><i class='bi bi-arrow-down-short'></i></a> 
-                        </td>";
+                        echo "<td>" . $insideLista . "</td>";
                     }
                     echo "</tr>";
                 }
