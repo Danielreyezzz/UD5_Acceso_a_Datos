@@ -1,7 +1,9 @@
 <?php
 include_once "conexion.php";
 
-
+/* Comprobamos que se haya recibido el key por get.
+Si es así, la consulta estará ordenada utilizando ambos datos recibidos
+Si no se ha recibido nada por url, la consulta será la tabla sin ordenar*/
 if (isset( $_GET['key'])) {
     $dato = $_GET['key'];
     $orden = $_GET['orden'];
@@ -9,9 +11,6 @@ if (isset( $_GET['key'])) {
 }else {
     $consulta = "SELECT * FROM champ";
 }
-
-
-
 
 $ordered = mysqli_query($conexion, $consulta);
 
@@ -40,6 +39,8 @@ if (!$ordered) {
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <!-- Cada th tiene un enlace que te lleva a la misma página, pero esta vez pasandole por get el tipo de dato a ordenar, 
+                    y el orden dependiendo del tipo de flecha -->
                     <th scope="col">ID <a href='003campeones.php?key=id&&orden=ASC'><i class='bi bi-arrow-up-short'></i></a> 
                         <a href='003campeones.php?key=id&&orden=DESC'><i class='bi bi-arrow-down-short'></i></a></th>
                     <th scope="col">Nombre <a href='003campeones.php?key=nombre&&orden=ASC'><i class='bi bi-arrow-up-short'></i></a> 

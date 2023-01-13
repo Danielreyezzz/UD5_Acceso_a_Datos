@@ -22,7 +22,7 @@ if (!$listaChamps) {
 </head>
 
 <body>
-    <div class="table-responsive">
+    <div class="table-responsive container mt-5">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -34,6 +34,7 @@ if (!$listaChamps) {
                 </tr>
             </thead>
             <tbody>
+                <!-- He decidido pintar la tabla con un foreach dentro de otro foreach-->
                 <?php foreach ($listaChamps as $lista) {
                     echo "<tr>";
                     foreach ($lista as $insideLista) {

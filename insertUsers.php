@@ -1,6 +1,6 @@
 <?php
 try {
-    
+    /* Archivo necesario para introducir usuarios con contraseña cifrada */
     include_once "conexionPDO.php";
 
     $pass1 = password_hash('1234', PASSWORD_DEFAULT);

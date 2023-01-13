@@ -42,6 +42,9 @@ if (!$listaChamps) {
                     foreach ($lista as $insideLista) {
                         echo "<td>" . $insideLista . "</td>";
                     }
+                    /* Mis botones son td que se pintan despues de los datos en el bucle. 
+                    El boton de modificar te llevará a 003editando.php con el id correspondiente de la lista en el momento en el que se encuentre del bucle.
+                    El boton del modal para borrar, hará lo mismo pero llevandote a borrando.php */
                     echo "<td><a href='003editando.php?id=$lista[id]' class='btn btn-primary'>MODIFICAR</a></td> 
                     <td>
                     <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#exampleModal$lista[id]'>
